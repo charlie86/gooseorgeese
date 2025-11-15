@@ -242,6 +242,10 @@ function playRandomSong() {
         });
     };
 
+    // Detect if mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+        || (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+    
     getVideoDuration(currentSong.videoId).then((duration) => {
         // pick a safe start time: at least 10s in, and ensure we have at least 30s to play
         const minStart = 10;
@@ -249,23 +253,43 @@ function playRandomSong() {
         const latestStart = duration > minDurationNeeded ? duration - 30 : minStart;
         const startSeconds = latestStart <= minStart ? minStart : Math.floor(Math.random() * (latestStart - minStart + 1)) + minStart;
 
-        // Create the hidden iframe - don't autoplay, will be started by play button
+        // On desktop: autoplay. On mobile: require button click
+        const autoplayParam = isMobile ? '' : '&autoplay=1';
         playerDiv.innerHTML = `<iframe id="yt-iframe" width="1" height="1" 
-            src="https://www.youtube.com/embed/${currentSong.videoId}?enablejsapi=1&start=${startSeconds}&loop=1&playlist=${currentSong.videoId}" 
+            src="https://www.youtube.com/embed/${currentSong.videoId}?enablejsapi=1&start=${startSeconds}${autoplayParam}&loop=1&playlist=${currentSong.videoId}" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             style="opacity: 0; position: absolute; pointer-events: none;">
         </iframe>`;
+        
+        if (!isMobile) {
+            // Auto-start on desktop - hide play button and enable guess buttons
+            setTimeout(() => {
+                playAudioBtn.classList.add('hidden');
+                songTitleDiv.textContent = '♪ Now playing...';
+                guessGooseBtn.disabled = false;
+                guessGeeseBtn.disabled = false;
+            }, 1000);
+        }
     }).catch((err) => {
         console.warn('Could not get video duration, falling back to immediate start', err);
-        // fallback: start at 10s with loop - don't autoplay
+        const autoplayParam = isMobile ? '' : '&autoplay=1';
         const playerDiv = document.getElementById('youtube-player');
         playerDiv.innerHTML = `<iframe id="yt-iframe" width="1" height="1" 
-            src="https://www.youtube.com/embed/${currentSong.videoId}?enablejsapi=1&start=10&loop=1&playlist=${currentSong.videoId}" 
+            src="https://www.youtube.com/embed/${currentSong.videoId}?enablejsapi=1&start=10${autoplayParam}&loop=1&playlist=${currentSong.videoId}" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             style="opacity: 0; position: absolute; pointer-events: none;">
         </iframe>`;
+        
+        if (!isMobile) {
+            setTimeout(() => {
+                playAudioBtn.classList.add('hidden');
+                songTitleDiv.textContent = '♪ Now playing...';
+                guessGooseBtn.disabled = false;
+                guessGeeseBtn.disabled = false;
+            }, 1000);
+        }
     });
 }
 
