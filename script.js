@@ -350,15 +350,15 @@ function makeGuess(guess) {
             "Yes.",
             "That is correct.",
             "Accurate.",
-            "Correct. It was " + currentBand.charAt(0).toUpperCase() + currentBand.slice(1) + ".",
-            "You got it.",
+            "Flaptastic. It was " + currentBand.charAt(0).toUpperCase() + currentBand.slice(1) + ".",
+            "Flock yeah! You got it.",
             "That's right."
         ];
         resultDiv.textContent = correctMessages[Math.floor(Math.random() * correctMessages.length)];
     } else {
         const incorrectMessages = [
             "Incorrect. It was " + currentBand.charAt(0).toUpperCase() + currentBand.slice(1) + ".",
-            "No. It was " + currentBand.charAt(0).toUpperCase() + currentBand.slice(1) + ".",
+            "No, you flocked up. It was " + currentBand.charAt(0).toUpperCase() + currentBand.slice(1) + ".",
             "Wrong. " + currentBand.charAt(0).toUpperCase() + currentBand.slice(1) + ".",
             "That is incorrect.",
             "Not quite."
