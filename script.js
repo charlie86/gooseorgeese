@@ -307,7 +307,7 @@ function makeGuess(guess) {
     
     if (isCorrect) {
         const correctMessages = [
-            "Correct.",
+            "Flaptastic.",
             "Yes.",
             "That is correct.",
             "Accurate.",
@@ -335,6 +335,6 @@ function makeGuess(guess) {
     // Show play again button
     setTimeout(() => {
         playRandomBtn.classList.remove('hidden');
-        playRandomBtn.textContent = 'Play Another Song';
+        playRandomBtn.textContent = 'Keep calm and honk on';
     }, 1000);
 }
