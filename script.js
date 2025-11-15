@@ -280,7 +280,7 @@ function playRandomSong() {
                 songTitleDiv.textContent = '♪ Now playing...';
                 guessGooseBtn.disabled = false;
                 guessGeeseBtn.disabled = false;
-            }, 2000);
+            }, 1000);
         }
     }).catch((err) => {
         console.warn('Could not get video duration, falling back to immediate start', err);
@@ -299,7 +299,7 @@ function playRandomSong() {
                 songTitleDiv.textContent = '♪ Now playing...';
                 guessGooseBtn.disabled = false;
                 guessGeeseBtn.disabled = false;
-            }, 2000);
+            }, 1000);
         }
     });
 }
