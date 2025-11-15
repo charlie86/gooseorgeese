@@ -132,6 +132,10 @@ window.onYouTubeIframeAPIReady = function() {
 };
 
 function playRandomSong() {
+    // Detect if mobile device (at top to use throughout function)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+        || (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+    
     // 50/50 selection between Goose and Geese
     currentBand = Math.random() < 0.5 ? 'goose' : 'geese';
     
@@ -140,14 +144,25 @@ function playRandomSong() {
     currentSong = bandSongs[Math.floor(Math.random() * bandSongs.length)];
     
     // Show song title
-    songTitleDiv.textContent = '♪ Ready to play...';
-    songTitleDiv.style.fontStyle = 'italic';
+    if (isMobile) {
+        songTitleDiv.textContent = '♪ Ready to play...';
+        songTitleDiv.style.fontStyle = 'italic';
+    } else {
+        songTitleDiv.textContent = '♪ Now playing...';
+        songTitleDiv.style.fontStyle = 'italic';
+    }
     
-    // Show player section with play button
+    // Show player section
     playerSection.classList.remove('hidden');
-    playAudioBtn.classList.remove('hidden');
     playRandomBtn.classList.add('hidden');
     resultDiv.classList.add('hidden');
+    
+    // Only show play button on mobile
+    if (isMobile) {
+        playAudioBtn.classList.remove('hidden');
+    } else {
+        playAudioBtn.classList.add('hidden');
+    }
     
     // Disable guess buttons until audio plays
     guessGooseBtn.disabled = true;
@@ -242,10 +257,6 @@ function playRandomSong() {
         });
     };
 
-    // Detect if mobile device
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-        || (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
-    
     getVideoDuration(currentSong.videoId).then((duration) => {
         // pick a safe start time: at least 10s in, and ensure we have at least 30s to play
         const minStart = 10;
