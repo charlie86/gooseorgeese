@@ -372,6 +372,6 @@ function makeGuess(guess) {
         playRandomBtn.classList.remove('hidden');
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
             || (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
-        playRandomBtn.innerHTML = isMobile ? 'Keep calm<br>and<br>honk on' : 'Keep calm and honk on';
+        playRandomBtn.innerHTML = isMobile ? 'Keep calm and<br>honk on' : 'Keep calm and honk on';
     }, 1000);
 }
