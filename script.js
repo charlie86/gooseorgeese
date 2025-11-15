@@ -370,6 +370,8 @@ function makeGuess(guess) {
     // Show play again button
     setTimeout(() => {
         playRandomBtn.classList.remove('hidden');
-        playRandomBtn.textContent = 'Keep calm and honk on';
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+            || (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+        playRandomBtn.innerHTML = isMobile ? 'Keep calm<br>and<br>honk on' : 'Keep calm and honk on';
     }, 1000);
 }
