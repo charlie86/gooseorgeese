@@ -238,12 +238,16 @@ function playRandomSong() {
                 });
 
                 const poll = setInterval(() => {
-                    const d = tempPlayer.getDuration();
-                    if (d && d > 0) {
-                        clearInterval(poll);
-                        tempPlayer.destroy();
-                        tempDiv.remove();
-                        resolve(Math.floor(d));
+                    try {
+                        const d = tempPlayer.getDuration();
+                        if (d && d > 0) {
+                            clearInterval(poll);
+                            tempPlayer.destroy();
+                            tempDiv.remove();
+                            resolve(Math.floor(d));
+                        }
+                    } catch (e) {
+                        // getDuration not ready yet, keep polling
                     }
                 }, 200);
                 // safety timeout
