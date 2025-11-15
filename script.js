@@ -107,6 +107,7 @@ const YOUTUBE_API_KEY = '';
 const playRandomBtn = document.getElementById('play-random');
 const playerSection = document.getElementById('player-section');
 const songTitleDiv = document.getElementById('song-title');
+const playAudioBtn = document.getElementById('play-audio');
 const guessGooseBtn = document.getElementById('guess-goose');
 const guessGeeseBtn = document.getElementById('guess-geese');
 const resultDiv = document.getElementById('result');
@@ -115,6 +116,7 @@ const correctCountSpan = document.getElementById('correct-count');
 const totalCountSpan = document.getElementById('total-count');
 
 playRandomBtn.addEventListener('click', playRandomSong);
+playAudioBtn.addEventListener('click', startAudio);
 guessGooseBtn.addEventListener('click', () => makeGuess('goose'));
 guessGeeseBtn.addEventListener('click', () => makeGuess('geese'));
 
@@ -137,18 +139,19 @@ function playRandomSong() {
     const bandSongs = songs[currentBand];
     currentSong = bandSongs[Math.floor(Math.random() * bandSongs.length)];
     
-    // Show song title (hidden until after guess)
-    songTitleDiv.textContent = '♪ Now playing...';
+    // Show song title
+    songTitleDiv.textContent = '♪ Ready to play...';
     songTitleDiv.style.fontStyle = 'italic';
     
-    // Show player and guess buttons
+    // Show player section with play button
     playerSection.classList.remove('hidden');
+    playAudioBtn.classList.remove('hidden');
     playRandomBtn.classList.add('hidden');
     resultDiv.classList.add('hidden');
     
-    // Enable guess buttons
-    guessGooseBtn.disabled = false;
-    guessGeeseBtn.disabled = false;
+    // Disable guess buttons until audio plays
+    guessGooseBtn.disabled = true;
+    guessGeeseBtn.disabled = true;
     const playerDiv = document.getElementById('youtube-player');
 
     // Helper: parse ISO 8601 duration (e.g. PT3M45S) -> seconds
@@ -246,24 +249,38 @@ function playRandomSong() {
         const latestStart = duration > minDurationNeeded ? duration - 30 : minStart;
         const startSeconds = latestStart <= minStart ? minStart : Math.floor(Math.random() * (latestStart - minStart + 1)) + minStart;
 
-        // Create the hidden iframe only now, with the chosen start and loop enabled
-        playerDiv.innerHTML = `<iframe width="1" height="1" 
-            src="https://www.youtube.com/embed/${currentSong.videoId}?autoplay=1&start=${startSeconds}&loop=1&playlist=${currentSong.videoId}" 
+        // Create the hidden iframe - don't autoplay, will be started by play button
+        playerDiv.innerHTML = `<iframe id="yt-iframe" width="1" height="1" 
+            src="https://www.youtube.com/embed/${currentSong.videoId}?enablejsapi=1&start=${startSeconds}&loop=1&playlist=${currentSong.videoId}" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             style="opacity: 0; position: absolute; pointer-events: none;">
         </iframe>`;
     }).catch((err) => {
         console.warn('Could not get video duration, falling back to immediate start', err);
-        // fallback: start at 10s with loop
+        // fallback: start at 10s with loop - don't autoplay
         const playerDiv = document.getElementById('youtube-player');
-        playerDiv.innerHTML = `<iframe width="1" height="1" 
-            src="https://www.youtube.com/embed/${currentSong.videoId}?autoplay=1&start=10&loop=1&playlist=${currentSong.videoId}" 
+        playerDiv.innerHTML = `<iframe id="yt-iframe" width="1" height="1" 
+            src="https://www.youtube.com/embed/${currentSong.videoId}?enablejsapi=1&start=10&loop=1&playlist=${currentSong.videoId}" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             style="opacity: 0; position: absolute; pointer-events: none;">
         </iframe>`;
     });
+}
+
+function startAudio() {
+    // Use iframe postMessage API to play the video
+    const iframe = document.getElementById('yt-iframe');
+    if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        playAudioBtn.classList.add('hidden');
+        songTitleDiv.textContent = '♪ Now playing...';
+        
+        // Enable guess buttons
+        guessGooseBtn.disabled = false;
+        guessGeeseBtn.disabled = false;
+    }
 }
 
 function makeGuess(guess) {
