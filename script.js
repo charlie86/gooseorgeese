@@ -99,6 +99,7 @@ let totalCount = 0;
 let player = null;
 let currentSong = null;
 let playerReady = false;
+let correctStreak = 0;
 // Optional: set a YouTube Data API key here to fetch video durations without loading any iframe.
 // If you don't have an API key leave this as an empty string and the code will fall back
 // to a short-lived hidden IFrame to read duration.
@@ -334,6 +335,9 @@ function makeGuess(guess) {
     totalCount++;
     if (isCorrect) {
         correctCount++;
+        correctStreak++;
+    } else {
+        correctStreak = 0;
     }
     
     // Reveal song title
@@ -345,16 +349,21 @@ function makeGuess(guess) {
     resultDiv.classList.add(isCorrect ? 'correct' : 'incorrect');
     
     if (isCorrect) {
-        const correctMessages = [
-            "Flaptastic.",
-            "Yes.",
-            "That is correct.",
-            "Accurate.",
-            "Flaptastic. It was " + currentBand.charAt(0).toUpperCase() + currentBand.slice(1) + ".",
-            "Flock yeah! You got it.",
-            "That's right."
-        ];
-        resultDiv.textContent = correctMessages[Math.floor(Math.random() * correctMessages.length)];
+        // Check for three in a row
+        if (correctStreak === 3) {
+            resultDiv.innerHTML = `🎉 Three in a row! You won a prize!<br><a href="https://www.amazon.com/Fox-Valley-Traders-Plastic-Garden/dp/B009W6CZH4?th=1" target="_blank" rel="noopener noreferrer">Claim your prize here →</a>`;
+        } else {
+            const correctMessages = [
+                "Flaptastic.",
+                "Yes.",
+                "That is correct.",
+                "Accurate.",
+                "Flaptastic. It was " + currentBand.charAt(0).toUpperCase() + currentBand.slice(1) + ".",
+                "Flock yeah! You got it.",
+                "That's right."
+            ];
+            resultDiv.textContent = correctMessages[Math.floor(Math.random() * correctMessages.length)];
+        }
     } else {
         const incorrectMessages = [
             "Incorrect. It was " + currentBand.charAt(0).toUpperCase() + currentBand.slice(1) + ".",
