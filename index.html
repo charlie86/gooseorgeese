@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goose or Geese</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <div class="container">
+        <h1>Goose or Geese</h1>
+        <p class="subtitle">A critical listening exercise</p>
+        
+        <div id="game-area">
+            <div id="player-section" class="hidden">
+                <div class="song-title" id="song-title"></div>
+                
+                <div class="guess-buttons">
+                    <button id="guess-goose" class="guess-btn">Goose</button>
+                    <button id="guess-geese" class="guess-btn">Geese</button>
+                </div>
+            </div>
+            
+            <button id="play-random" class="primary-btn">Play Random Song</button>
+            
+            <div id="result" class="result hidden"></div>
+            
+            <div id="stats" class="stats hidden">
+                <p>Correct: <span id="correct-count">0</span></p>
+                <p>Total: <span id="total-count">0</span></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hidden container for the YouTube iframe player (keeps UI clean) -->
+    <div id="youtube-player" style="position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; left:-9999px; top:-9999px;"></div>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>
