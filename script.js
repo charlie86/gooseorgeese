@@ -148,7 +148,7 @@ function playRandomSong() {
         songTitleDiv.textContent = '♪ Ready to play...';
         songTitleDiv.style.fontStyle = 'italic';
     } else {
-        songTitleDiv.textContent = '♪ Now playing...';
+        songTitleDiv.textContent = '♪ Loading...';
         songTitleDiv.style.fontStyle = 'italic';
     }
     
@@ -274,13 +274,13 @@ function playRandomSong() {
         </iframe>`;
         
         if (!isMobile) {
-            // Auto-start on desktop - hide play button and enable guess buttons
+            // Auto-start on desktop - wait a bit longer for audio to actually start
             setTimeout(() => {
                 playAudioBtn.classList.add('hidden');
                 songTitleDiv.textContent = '♪ Now playing...';
                 guessGooseBtn.disabled = false;
                 guessGeeseBtn.disabled = false;
-            }, 1000);
+            }, 2000);
         }
     }).catch((err) => {
         console.warn('Could not get video duration, falling back to immediate start', err);
@@ -299,7 +299,7 @@ function playRandomSong() {
                 songTitleDiv.textContent = '♪ Now playing...';
                 guessGooseBtn.disabled = false;
                 guessGeeseBtn.disabled = false;
-            }, 1000);
+            }, 2000);
         }
     });
 }
