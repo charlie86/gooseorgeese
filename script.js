@@ -312,7 +312,7 @@ function startAudio() {
     // Use iframe postMessage API to play the video
     const iframe = document.getElementById('yt-iframe');
     if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', 'https://www.youtube.com');
         playAudioBtn.classList.add('hidden');
         songTitleDiv.textContent = '♪ Now playing...';
         
