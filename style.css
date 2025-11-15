@@ -61,6 +61,24 @@ h1 {
     position: relative;
 }
 
+#play-audio {
+    margin: 20px auto;
+    display: block;
+    min-width: 160px;
+    font-size: 1.1em;
+    padding: 12px 35px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+#play-audio:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+#play-audio:active {
+    transform: translateY(0);
+}
 
 #youtube-player {
     position: absolute;
@@ -105,12 +123,19 @@ h1 {
     color: white;
     border: 2px solid #333;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
+    border-radius: 4px;
 }
 
 .primary-btn:hover {
-    background: white;
-    color: #333;
+    background: #444;
+    border-color: #444;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
 }
 
 .result {
