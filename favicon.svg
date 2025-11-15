@@ -1,23 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Sky background -->
-  <circle cx="50" cy="50" r="48" fill="#87CEEB"/>
+  <!-- Background -->
+  <circle cx="50" cy="50" r="48" fill="#2c5f8d"/>
   
-  <!-- Body (gray-brown) -->
-  <ellipse cx="50" cy="60" rx="18" ry="22" fill="#8B7355"/>
+  <!-- Goose egg (off-white, oval) -->
+  <ellipse cx="50" cy="52" rx="22" ry="30" fill="#f5f5dc"/>
   
-  <!-- Neck (black with white chinstrap) -->
-  <rect x="44" y="35" width="12" height="30" fill="#1a1a1a" rx="6"/>
-  <ellipse cx="50" cy="45" rx="8" ry="5" fill="white"/>
+  <!-- Subtle shading -->
+  <ellipse cx="50" cy="52" rx="22" ry="30" fill="url(#eggGradient)"/>
   
-  <!-- Head (black) -->
-  <ellipse cx="50" cy="28" rx="10" ry="12" fill="#1a1a1a"/>
-  
-  <!-- Eye (white dot) -->
-  <circle cx="53" cy="27" r="1.5" fill="white"/>
-  
-  <!-- Beak (black) -->
-  <polygon points="60,28 65,30 60,32" fill="#1a1a1a"/>
-  
-  <!-- Wing detail -->
-  <path d="M 38,55 Q 32,60 35,68" stroke="#6B5D4F" stroke-width="2" fill="none"/>
+  <defs>
+    <radialGradient id="eggGradient">
+      <stop offset="30%" stop-color="rgba(255,255,255,0.3)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.05)"/>
+    </radialGradient>
+  </defs>
 </svg>
