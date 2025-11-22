@@ -1,0 +1,479 @@
+export const songs = [
+    {
+        "id": "goose-ktjYcMyW9H0",
+        "artist": "Goose",
+        "title": "Goose - Hungersite (Official Music Video)",
+        "youtubeId": "ktjYcMyW9H0",
+        "startTime": 21,
+        "duration": 15,
+        "totalDuration": 287
+    },
+    {
+        "id": "goose-DF2QKZ823HY",
+        "artist": "Goose",
+        "title": "Goose - Give It Time (Official Video)",
+        "youtubeId": "DF2QKZ823HY",
+        "startTime": 147,
+        "duration": 15,
+        "totalDuration": 421
+    },
+    {
+        "id": "goose-LoJVGpmuwm0",
+        "artist": "Goose",
+        "title": "Goose - Your Direction (Official Music Video)",
+        "youtubeId": "LoJVGpmuwm0",
+        "startTime": 245,
+        "duration": 15,
+        "totalDuration": 312
+    },
+    {
+        "id": "goose-2gypxvKKZEw",
+        "artist": "Goose",
+        "title": "Goose - So Ready (Official Music Video)",
+        "youtubeId": "2gypxvKKZEw",
+        "startTime": 168,
+        "duration": 15,
+        "totalDuration": 288
+    },
+    {
+        "id": "goose-_bl-Izuc68g",
+        "artist": "Goose",
+        "title": "Goose - Dripfield (Official Music Video)",
+        "youtubeId": "_bl-Izuc68g",
+        "startTime": 152,
+        "duration": 15,
+        "totalDuration": 367
+    },
+    {
+        "id": "goose-rQZpK4vyPGI",
+        "artist": "Goose",
+        "title": "Goose - Borne (Official Music Video)",
+        "youtubeId": "rQZpK4vyPGI",
+        "startTime": 107,
+        "duration": 15,
+        "totalDuration": 311
+    },
+    {
+        "id": "goose-M7Dk_Ls9UT4",
+        "artist": "Goose",
+        "title": "Goose - Everything Must Go (Official Video)",
+        "youtubeId": "M7Dk_Ls9UT4",
+        "startTime": 128,
+        "duration": 15,
+        "totalDuration": 356
+    },
+    {
+        "id": "goose-uGSUgpBa0tU",
+        "artist": "Goose",
+        "title": "Goose: Madalena | The Tonight Show Starring Jimmy Fallon",
+        "youtubeId": "uGSUgpBa0tU",
+        "startTime": 236,
+        "duration": 15,
+        "totalDuration": 281
+    },
+    {
+        "id": "goose-wg3KM6RfEzo",
+        "artist": "Goose",
+        "title": "Goose - The Way It Is (feat. Bruce Hornsby) - 12/9/23 Goosemas X, Hampton, VA [4K]",
+        "youtubeId": "wg3KM6RfEzo",
+        "startTime": 486,
+        "duration": 15,
+        "totalDuration": 625
+    },
+    {
+        "id": "goose-utIfTvZ-prw",
+        "artist": "Goose",
+        "title": "Goose - Royal (Official Visualizer)",
+        "youtubeId": "utIfTvZ-prw",
+        "startTime": 143,
+        "duration": 15,
+        "totalDuration": 356
+    },
+    {
+        "id": "goose-eth4y7YHfJQ",
+        "artist": "Goose",
+        "title": "Goose - Animal (feat. Animal) - Newport Folk Festival 7/29/23",
+        "youtubeId": "eth4y7YHfJQ",
+        "startTime": 380,
+        "duration": 15,
+        "totalDuration": 595
+    },
+    {
+        "id": "goose-JPB6rI-eo8E",
+        "artist": "Goose",
+        "title": "Goose - Madalena (Official Visualizer)",
+        "youtubeId": "JPB6rI-eo8E",
+        "startTime": 20,
+        "duration": 15,
+        "totalDuration": 276
+    },
+    {
+        "id": "goose-foSUStaJtug",
+        "artist": "Goose",
+        "title": "Goose - No Rain (feat. Rogers Stevens of Blind Melon) - 6/28/24 The Mann, Philadelphia, PA",
+        "youtubeId": "foSUStaJtug",
+        "startTime": 23,
+        "duration": 15,
+        "totalDuration": 461
+    },
+    {
+        "id": "goose-nHR_guYzB20",
+        "artist": "Goose",
+        "title": "Goose - Hungersite \u2192 Arcadia (feat. Trey Anastasio) - 6/25/22 Radio City Music Hall, New York, NY",
+        "youtubeId": "nHR_guYzB20",
+        "startTime": 1027,
+        "duration": 15,
+        "totalDuration": 2314
+    },
+    {
+        "id": "goose-hWxs5oGvpz4",
+        "artist": "Goose",
+        "title": "Goose - Mustang Sally (feat. Jimmy Fallon) - 3/10/23 Port Chester, NY (4K)",
+        "youtubeId": "hWxs5oGvpz4",
+        "startTime": 145,
+        "duration": 15,
+        "totalDuration": 351
+    },
+    {
+        "id": "goose-RnwzffaFWGw",
+        "artist": "Goose",
+        "title": "Goose - Lead Up (Official Visualizer)",
+        "youtubeId": "RnwzffaFWGw",
+        "startTime": 179,
+        "duration": 15,
+        "totalDuration": 320
+    },
+    {
+        "id": "goose-XnhBHeLDXr8",
+        "artist": "Goose",
+        "title": "Goose - Jed Stone - 8/31/25 The Gorge, George, WA",
+        "youtubeId": "XnhBHeLDXr8",
+        "startTime": 379,
+        "duration": 15,
+        "totalDuration": 481
+    },
+    {
+        "id": "goose-IoFwHFjvfxg",
+        "artist": "Goose",
+        "title": "Goose - Slow Ready (feat. Lucius) - 8/21/22 Greek Theatre, Los Angeles, CA",
+        "youtubeId": "IoFwHFjvfxg",
+        "startTime": 413,
+        "duration": 15,
+        "totalDuration": 593
+    },
+    {
+        "id": "goose-VbPQizhkvdc",
+        "artist": "Goose",
+        "title": "Goose - Slow Ready (Official Visualizer)",
+        "youtubeId": "VbPQizhkvdc",
+        "startTime": 233,
+        "duration": 15,
+        "totalDuration": 307
+    },
+    {
+        "id": "goose-sG7X_huem_M",
+        "artist": "Goose",
+        "title": "Goose - Hot Tea (Official Visualizer)",
+        "youtubeId": "sG7X_huem_M",
+        "startTime": 399,
+        "duration": 15,
+        "totalDuration": 435
+    },
+    {
+        "id": "goose-k4SAr1-IbVU",
+        "artist": "Goose",
+        "title": "Goose - Peggy-O (feat. Bob Weir) - 1/15/23 Riviera Maya, MX",
+        "youtubeId": "k4SAr1-IbVU",
+        "startTime": 281,
+        "duration": 15,
+        "totalDuration": 523
+    },
+    {
+        "id": "goose-nineJ9jpgF4",
+        "artist": "Goose",
+        "title": "Official TGR x Goose &quot;Tumble&quot; Music Video",
+        "youtubeId": "nineJ9jpgF4",
+        "startTime": 244,
+        "duration": 15,
+        "totalDuration": 365
+    },
+    {
+        "id": "goose-TRSS-tDSMf0",
+        "artist": "Goose",
+        "title": "Goose - Hot Love &amp; The Lazy Poet (Official Visualizer)",
+        "youtubeId": "TRSS-tDSMf0",
+        "startTime": 191,
+        "duration": 15,
+        "totalDuration": 331
+    },
+    {
+        "id": "goose-2bqF7HJBZHc",
+        "artist": "Goose",
+        "title": "Goose Acoustic Set at Viva El Gonzo 2025",
+        "youtubeId": "2bqF7HJBZHc",
+        "startTime": 1731,
+        "duration": 15,
+        "totalDuration": 3485
+    },
+    {
+        "id": "goose-KqTk186Tnec",
+        "artist": "Goose",
+        "title": "Goose - Animal (Official Visualizer)",
+        "youtubeId": "KqTk186Tnec",
+        "startTime": 268,
+        "duration": 15,
+        "totalDuration": 468
+    },
+    {
+        "id": "goose-b1P8qdMuw_A",
+        "artist": "Goose",
+        "title": "Goose - AUATC (Bon Iver) - 10/19/20 Frederick, MD",
+        "youtubeId": "b1P8qdMuw_A",
+        "startTime": 114,
+        "duration": 15,
+        "totalDuration": 435
+    },
+    {
+        "id": "goose-5Z2kUXvXDxk",
+        "artist": "Goose",
+        "title": "Goose - Borne \u2192 Hungersite \u2192 Dripfield - 2/8/25 Milwaukee, WI",
+        "youtubeId": "5Z2kUXvXDxk",
+        "startTime": 1949,
+        "duration": 15,
+        "totalDuration": 2565
+    },
+    {
+        "id": "goose-y3m8u1O4F3w",
+        "artist": "Goose",
+        "title": "Goose - Turbulence &amp; The Night Rays (Official Visualizer)",
+        "youtubeId": "y3m8u1O4F3w",
+        "startTime": 396,
+        "duration": 15,
+        "totalDuration": 574
+    },
+    {
+        "id": "goose-ybcUYXbRaO4",
+        "artist": "Goose",
+        "title": "Goose - Dustin Hoffman (Official Visualizer)",
+        "youtubeId": "ybcUYXbRaO4",
+        "startTime": 180,
+        "duration": 15,
+        "totalDuration": 418
+    },
+    {
+        "id": "goose-KgbFmXWGGoY",
+        "artist": "Goose",
+        "title": "Goose - 02/15/25 - &quot;Give It Time&quot;",
+        "youtubeId": "KgbFmXWGGoY",
+        "startTime": 566,
+        "duration": 15,
+        "totalDuration": 1096
+    },
+    {
+        "id": "geese-RGE-JRsJ2uo",
+        "artist": "Geese",
+        "title": "Geese - Au Pays du Cocaine (Official Music Video)",
+        "youtubeId": "RGE-JRsJ2uo",
+        "startTime": 191,
+        "duration": 15,
+        "totalDuration": 216
+    },
+    {
+        "id": "geese-tw91e6Nurfc",
+        "artist": "Geese",
+        "title": "Geese \u2013 Taxes",
+        "youtubeId": "tw91e6Nurfc",
+        "startTime": 150,
+        "duration": 15,
+        "totalDuration": 211
+    },
+    {
+        "id": "geese-Phh3oVCtzBg",
+        "artist": "Geese",
+        "title": "Geese - Taxes (Official Music Video)",
+        "youtubeId": "Phh3oVCtzBg",
+        "startTime": 17,
+        "duration": 15,
+        "totalDuration": 198
+    },
+    {
+        "id": "geese-qIol9hig2G4",
+        "artist": "Geese",
+        "title": "Geese - Getting Killed | From The Basement",
+        "youtubeId": "qIol9hig2G4",
+        "startTime": 1975,
+        "duration": 15,
+        "totalDuration": 2061
+    },
+    {
+        "id": "geese-0m1abZODAJ0",
+        "artist": "Geese",
+        "title": "Geese - 4D Country (Official Music Video)",
+        "youtubeId": "0m1abZODAJ0",
+        "startTime": 212,
+        "duration": 15,
+        "totalDuration": 419
+    },
+    {
+        "id": "geese-LvHsLdYXfaY",
+        "artist": "Geese",
+        "title": "Geese - Cowboy Nudes (Official Music Video)",
+        "youtubeId": "LvHsLdYXfaY",
+        "startTime": 149,
+        "duration": 15,
+        "totalDuration": 173
+    },
+    {
+        "id": "geese-fr4NSDBtK6o",
+        "artist": "Geese",
+        "title": "Geese - Jesse (Official Music Video)",
+        "youtubeId": "fr4NSDBtK6o",
+        "startTime": 114,
+        "duration": 15,
+        "totalDuration": 179
+    },
+    {
+        "id": "geese-FT-KOE9lRQY",
+        "artist": "Geese",
+        "title": "Geese - St. Elmo (Official Music Video)",
+        "youtubeId": "FT-KOE9lRQY",
+        "startTime": 170,
+        "duration": 15,
+        "totalDuration": 214
+    },
+    {
+        "id": "geese-deFElPQMasw",
+        "artist": "Geese",
+        "title": "Geese - I See Myself (Official Music Video)",
+        "youtubeId": "deFElPQMasw",
+        "startTime": 134,
+        "duration": 15,
+        "totalDuration": 192
+    },
+    {
+        "id": "geese-IeM0YJZGMsM",
+        "artist": "Geese",
+        "title": "Geese - Mysterious Love (Official Music Video)",
+        "youtubeId": "IeM0YJZGMsM",
+        "startTime": 118,
+        "duration": 15,
+        "totalDuration": 196
+    },
+    {
+        "id": "geese-__bi2jKX_AU",
+        "artist": "Geese",
+        "title": "Geese - Low Era (Official Music Video)",
+        "youtubeId": "__bi2jKX_AU",
+        "startTime": 202,
+        "duration": 15,
+        "totalDuration": 265
+    },
+    {
+        "id": "geese-wnlV03_iFcI",
+        "artist": "Geese",
+        "title": "Geese - 100 Horses, Cobra and You Get What You Give (New Radicals cover)",
+        "youtubeId": "wnlV03_iFcI",
+        "startTime": 536,
+        "duration": 15,
+        "totalDuration": 650
+    },
+    {
+        "id": "geese-fIeb2sRbI8Y",
+        "artist": "Geese",
+        "title": "&quot;Baby&quot; - Justin Bieber (Cover)",
+        "youtubeId": "fIeb2sRbI8Y",
+        "startTime": 134,
+        "duration": 15,
+        "totalDuration": 231
+    },
+    {
+        "id": "geese-qy8ZBISKqKI",
+        "artist": "Geese",
+        "title": "Geese - Getting Killed [Full Album]",
+        "youtubeId": "qy8ZBISKqKI",
+        "startTime": 1415,
+        "duration": 15,
+        "totalDuration": 2096
+    },
+    {
+        "id": "geese-DT0RBSpDiKo",
+        "artist": "Geese",
+        "title": "Geese - 100 Horses (Official Audio)",
+        "youtubeId": "DT0RBSpDiKo",
+        "startTime": 173,
+        "duration": 15,
+        "totalDuration": 227
+    },
+    {
+        "id": "geese-y3udPM2ehAo",
+        "artist": "Geese",
+        "title": "Geese - Cobra (Official Audio)",
+        "youtubeId": "y3udPM2ehAo",
+        "startTime": 126,
+        "duration": 15,
+        "totalDuration": 186
+    },
+    {
+        "id": "geese-nT43dsYhw0k",
+        "artist": "Geese",
+        "title": "Geese - Trinidad (Official Audio)",
+        "youtubeId": "nT43dsYhw0k",
+        "startTime": 149,
+        "duration": 15,
+        "totalDuration": 226
+    },
+    {
+        "id": "geese-pyZE6sC1bTE",
+        "artist": "Geese",
+        "title": "Geese - 2122",
+        "youtubeId": "pyZE6sC1bTE",
+        "startTime": 147,
+        "duration": 15,
+        "totalDuration": 235
+    },
+    {
+        "id": "geese-V-prNnCjUMs",
+        "artist": "Geese",
+        "title": "Geese &quot;Low Era&quot;",
+        "youtubeId": "V-prNnCjUMs",
+        "startTime": 245,
+        "duration": 15,
+        "totalDuration": 285
+    },
+    {
+        "id": "geese-kjxsaFB5svA",
+        "artist": "Geese",
+        "title": "Geese - Au Pays du Cocaine (Official Audio)",
+        "youtubeId": "kjxsaFB5svA",
+        "startTime": 133,
+        "duration": 15,
+        "totalDuration": 211
+    },
+    {
+        "id": "geese-SO8JMrHq3M8",
+        "artist": "Geese",
+        "title": "big brains #3dcountry #musicstation",
+        "youtubeId": "SO8JMrHq3M8",
+        "startTime": 15,
+        "duration": 15,
+        "totalDuration": 42
+    },
+    {
+        "id": "geese-BvAlWXmy1iA",
+        "artist": "Geese",
+        "title": "Geese - Disco (Official Lyric Video)",
+        "youtubeId": "BvAlWXmy1iA",
+        "startTime": 147,
+        "duration": 15,
+        "totalDuration": 408
+    },
+    {
+        "id": "geese-BzqGVlt38PI",
+        "artist": "Geese",
+        "title": "Geese - Tomorrow&#39;s Crusades (Official Audio)",
+        "youtubeId": "BzqGVlt38PI",
+        "startTime": 145,
+        "duration": 15,
+        "totalDuration": 272
+    }
+].filter(s => !s.disabled);

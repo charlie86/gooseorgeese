@@ -1,47 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goose or Geese</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="style.css?v=2">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goose or Geese?</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Outfit:wght@300;400;700;900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <h1>
-            <span class="word">G<span class="vowels"><span class="v1">OO</span><span class="v2">EE</span></span>SE</span>
-            <span class="or">or</span>
-            <span class="word">G<span class="vowels"><span class="v1">EE</span><span class="v2">OO</span></span>SE</span>
-        </h1>
-        <p class="subtitle">Name that fowl foursome</p>
-        
-        <div id="game-area">
-            <div id="player-section" class="hidden">
-                <div class="song-title" id="song-title"></div>
-                
-                <button id="play-audio" class="primary-btn hidden">▶ Play Audio</button>
-                
-                <div class="guess-buttons">
-                    <button id="guess-goose" class="guess-btn">Goose</button>
-                    <button id="guess-geese" class="guess-btn">Geese</button>
+    <div id="app">
+        <header>
+            <h1>GOOSE <span class="divider">OR</span> GEESE</h1>
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="label">Streak</span>
+                    <span id="streak" class="value">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">Score</span>
+                    <span id="score" class="value">0</span>
                 </div>
             </div>
-            
-            <button id="play-random" class="primary-btn">Play random song</button>
-            
-            <div id="result" class="result hidden"></div>
-            
-            <div id="stats" class="stats hidden">
-                <p>Correct: <span id="correct-count">0</span></p>
-                <p>Total: <span id="total-count">0</span></p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Hidden container for the YouTube iframe player (keeps UI clean) -->
-    <div id="youtube-player" style="position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; left:-9999px; top:-9999px;"></div>
+        </header>
 
-    <script src="script.js?v=2"></script>
+        <main>
+            <div class="game-container">
+                <div class="visualizer-container">
+                    <div class="visualizer-ring"></div>
+                    <div class="visualizer-ring"></div>
+                    <div class="visualizer-ring"></div>
+                    <button id="play-btn" class="play-btn" aria-label="Play Song">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="status-message" id="status-message">Listen closely...</div>
+
+                <div class="choices">
+                    <button class="choice-btn goose" data-artist="Goose">
+                        <span class="artist-name">GOOSE</span>
+                    </button>
+                    <button class="choice-btn geese" data-artist="Geese">
+                        <span class="artist-name">GEESE</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Guess the band.</p>
+        </footer>
+    </div>
+
+    <!-- Hidden Audio Player -->
+    <div id="audio-container" class="hidden-player"></div>
+
+    <script type="module" src="/main.js"></script>
 </body>
+
 </html>
