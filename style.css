@@ -310,11 +310,11 @@ main {
         padding: 1rem;
         height: auto;
         min-height: 100vh;
-        padding-top: 2rem;
+        padding-top: 2.5rem;
     }
 
     header {
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
     }
 
     h1 {
@@ -359,7 +359,7 @@ main {
     }
 
     .game-container {
-        gap: 1.75rem;
+        gap: 1.5rem;
     }
 
     .choices {
