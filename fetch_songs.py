@@ -12,8 +12,8 @@ if not API_KEY:
     print("Please provide a YouTube API key as an argument or set YOUTUBE_API_KEY environment variable.")
     sys.exit(1)
 BANDS = [
-    { 'name': 'Goose', 'query': 'Goose band official video' },
-    { 'name': 'Geese', 'query': 'Geese band official video' }
+    { 'name': 'Goose', 'query': 'Goose band official video', 'channelId': 'UCNMe_yeW_kCrjRImbUiQ3ZA' },
+    { 'name': 'Geese', 'query': 'Geese band official video', 'channelId': 'UCY1iN9fT5gG7sG3oAAkkQtQ' }
 ]
 MAX_RESULTS = 50 # Fetch more to allow for filtering
 
@@ -53,9 +53,11 @@ def get_video_details(video_ids, api_key):
         print(f"Error fetching video details: {e}")
         return {}
 
-def search_youtube_page(query, api_key, page_token=None):
+def search_youtube_page(query, api_key, channel_id=None, page_token=None):
     encoded_query = urllib.parse.quote(query)
     url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={encoded_query}&type=video&maxResults=50&key={api_key}"
+    if channel_id:
+        url += f"&channelId={channel_id}"
     if page_token:
         url += f"&pageToken={page_token}"
     
@@ -77,7 +79,7 @@ def main():
         
         while songs_added < 200: # Try to find up to 200 songs
             try:
-                response = search_youtube_page(band['query'], API_KEY, next_page_token)
+                response = search_youtube_page(band['query'], API_KEY, band.get('channelId'), next_page_token)
                 items = response.get('items', [])
                 next_page_token = response.get('nextPageToken')
                 
@@ -91,7 +93,9 @@ def main():
                 for item in items:
                     title = item['snippet']['title'].lower()
                     # Stricter filtering for "official" feel, but allow some live if high quality
-                    if 'interview' in title or 'review' in title or 'reaction' in title or 'podcast' in title:
+                    if ('interview' in title or 'review' in title or 'reaction' in title or 
+                        'podcast' in title or 'band or sham' in title or 'geesefest' in title or
+                        'episode' in title or 'out now' in title or 'out next week' in title or 'is out' in title):
                         continue
                     if 'teaser' in title or 'trailer' in title or 'full album' in title:
                         continue

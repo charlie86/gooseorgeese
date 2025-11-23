@@ -62,8 +62,19 @@ function onPlayerStateChange(event) {
 }
 
 function loadRandomSong() {
-    const randomIndex = Math.floor(Math.random() * songs.length);
-    state.currentSong = songs[randomIndex];
+    // 50/50 chance for each band
+    const targetBand = Math.random() < 0.5 ? 'Goose' : 'Geese';
+    const bandSongs = songs.filter(s => s.artist === targetBand);
+
+    // Fallback if something is wrong with filtering (shouldn't happen)
+    if (bandSongs.length === 0) {
+        console.warn(`No songs found for ${targetBand}, falling back to random`);
+        const randomIndex = Math.floor(Math.random() * songs.length);
+        state.currentSong = songs[randomIndex];
+    } else {
+        const randomIndex = Math.floor(Math.random() * bandSongs.length);
+        state.currentSong = bandSongs[randomIndex];
+    }
 
     if (state.player && state.isPlayerReady) {
         // Randomize start time if totalDuration is available
