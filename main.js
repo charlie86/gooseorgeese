@@ -96,6 +96,8 @@ function playSong() {
 
         state.player.playVideo();
         state.isPlaying = true;
+        statusMsg.textContent = "Name that fowl foursome!";
+        statusMsg.style.color = "var(--text-color)";
         updateUI();
 
         // Stop after duration

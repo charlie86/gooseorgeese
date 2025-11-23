@@ -1,21 +1,23 @@
 import sys
+import os
 import json
 import urllib.request
 import urllib.parse
 import re
 import random
 
-if len(sys.argv) < 2:
-    print("Please provide a YouTube API key as the first argument.")
-    print("Usage: python3 fetch_songs.py <YOUR_API_KEY>")
-    sys.exit(1)
+API_KEY = sys.argv[1] if len(sys.argv) > 1 else os.environ.get('YOUTUBE_API_KEY')
 
-API_KEY = sys.argv[1]
+if not API_KEY:
+    print("Please provide a YouTube API key as an argument or set YOUTUBE_API_KEY environment variable.")
+    sys.exit(1)
 BANDS = [
     { 'name': 'Goose', 'query': 'Goose band official video' },
     { 'name': 'Geese', 'query': 'Geese band official video' }
 ]
-MAX_RESULTS = 40 # Fetch more to allow for filtering
+MAX_RESULTS = 50 # Fetch more to allow for filtering
+
+
 
 def parse_duration(duration_str):
     """Parses ISO 8601 duration (e.g., PT4M13S) into seconds."""
@@ -51,79 +53,102 @@ def get_video_details(video_ids, api_key):
         print(f"Error fetching video details: {e}")
         return {}
 
-def search_youtube(query, api_key):
+def search_youtube_page(query, api_key, page_token=None):
     encoded_query = urllib.parse.quote(query)
-    url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={encoded_query}&type=video&maxResults={MAX_RESULTS}&key={api_key}"
+    url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={encoded_query}&type=video&maxResults=50&key={api_key}"
+    if page_token:
+        url += f"&pageToken={page_token}"
     
     try:
         with urllib.request.urlopen(url) as response:
             data = response.read().decode('utf-8')
-            parsed = json.loads(data)
-            return parsed.get('items', [])
+            return json.loads(data)
     except Exception as e:
-        raise e
+        print(f"Error searching YouTube: {e}")
+        return {}
 
 def main():
     all_songs = []
     
     for band in BANDS:
         print(f"Fetching songs for {band['name']}...")
-        try:
-            items = search_youtube(band['query'], API_KEY)
-            
-            # Filter out obvious live versions, interviews, and wrong band
-            filtered_items = []
-            other_band = 'Geese' if band['name'] == 'Goose' else 'Goose'
-            
-            for item in items:
-                title = item['snippet']['title'].lower()
-                if 'live' in title or 'session' in title or 'concert' in title:
-                    continue
-                if 'interview' in title or 'review' in title or 'reaction' in title:
-                    continue
-                if 'teaser' in title or 'trailer' in title or 'full album' in title:
-                    continue
-                if other_band.lower() in title: # Avoid cross-contamination
-                    continue
-                    
-                filtered_items.append(item)
-            
-            # Get video IDs to fetch details
-            video_ids = [item['id']['videoId'] for item in filtered_items]
-            video_details = get_video_details(video_ids, API_KEY)
-            
-            songs_added = 0
-            for item in filtered_items:
-                video_id = item['id']['videoId']
-                duration = video_details.get(video_id, 0)
+        songs_added = 0
+        next_page_token = None
+        
+        while songs_added < 200: # Try to find up to 200 songs
+            try:
+                response = search_youtube_page(band['query'], API_KEY, next_page_token)
+                items = response.get('items', [])
+                next_page_token = response.get('nextPageToken')
                 
-                # Skip if duration is too short (e.g. < 30s) or missing
-                if duration < 30:
-                    continue
-                    
-                # Calculate random start time
-                # Ensure we have at least 15s of play time
-                max_start = max(0, duration - 20) 
-                start_time = random.randint(0, max_start)
-                
-                song = {
-                    'id': f"{band['name'].lower()}-{video_id}",
-                    'artist': band['name'],
-                    'title': item['snippet']['title'],
-                    'youtubeId': video_id,
-                    'startTime': start_time,
-                    'duration': 15,
-                    'totalDuration': duration
-                }
-                all_songs.append(song)
-                songs_added += 1
-                
-                if songs_added >= 30: # Cap at 30 clean songs per band
+                if not items:
                     break
-            
-            print(f"Found {songs_added} songs for {band['name']}")
-        except Exception as e:
-            print(f"Error fetching for {band['name']}: {e}")
+                
+                # Filter out obvious live versions, interviews, and wrong band
+                filtered_items = []
+                other_band = 'Geese' if band['name'] == 'Goose' else 'Goose'
+                
+                for item in items:
+                    title = item['snippet']['title'].lower()
+                    # Stricter filtering for "official" feel, but allow some live if high quality
+                    if 'interview' in title or 'review' in title or 'reaction' in title or 'podcast' in title:
+                        continue
+                    if 'teaser' in title or 'trailer' in title or 'full album' in title:
+                        continue
+                    if 'cover' in title and band['name'] not in item['snippet']['title']: # Skip random covers by others
+                        continue
+                    if other_band.lower() in title: # Avoid cross-contamination
+                        continue
+                        
+                    filtered_items.append(item)
+                
+                if not filtered_items:
+                    if not next_page_token:
+                        break
+                    continue
+
+                # Get video IDs to fetch details
+                video_ids = [item['id']['videoId'] for item in filtered_items]
+                video_details = get_video_details(video_ids, API_KEY)
+                
+                for item in filtered_items:
+                    video_id = item['id']['videoId']
+                    duration = video_details.get(video_id, 0)
+                    
+                    # Skip if duration is too short (e.g. < 30s) or missing
+                    if duration < 30:
+                        continue
+                        
+                    # Calculate random start time
+                    # Ensure we have at least 15s of play time
+                    max_start = max(0, duration - 20) 
+                    start_time = random.randint(0, max_start)
+                    
+                    song = {
+                        'id': f"{band['name'].lower()}-{video_id}",
+                        'artist': band['name'],
+                        'title': item['snippet']['title'],
+                        'youtubeId': video_id,
+                        'startTime': start_time,
+                        'duration': 15,
+                        'totalDuration': duration
+                    }
+                    all_songs.append(song)
+                    songs_added += 1
+                    
+                    if songs_added >= 200:
+                        break
+                
+                print(f"  Fetched page. Total so far: {songs_added}")
+                
+                if not next_page_token:
+                    break
+                    
+            except Exception as e:
+                print(f"Error fetching for {band['name']}: {e}")
+                break
+        
+        print(f"Finished {band['name']}: Found {songs_added} songs")
 
     with open('new_songs.json', 'w') as f:
         json.dump(all_songs, f, indent=2)
