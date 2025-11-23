@@ -58,7 +58,7 @@ h1 {
 
 .divider {
     font-weight: 300;
-    color: #666;
+    color: var(--accent-color);
     font-size: 1.5rem;
     vertical-align: middle;
     margin: 0 0.5rem;
