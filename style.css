@@ -342,7 +342,7 @@ main {
     .visualizer-container {
         width: 120px;
         height: 120px;
-        margin-top: -3rem;
+        transform: translateY(-3rem);
     }
 
     .play-btn {
