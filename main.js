@@ -147,11 +147,11 @@ function handleGuess(artist) {
         state.streak += 1;
 
         const successMessages = [
-            "HONK! Correct!",
-            "You got it!",
-            "Fly high! That's right!",
-            "Golden Egg! Correct!",
-            "Spot on! Goose on the loose!"
+            "Flaptastic.",
+            "You got it.",
+            "Affirmative.",
+            "Yep.",
+            "Correct."
         ];
         const randomMsg = successMessages[Math.floor(Math.random() * successMessages.length)];
 
@@ -168,11 +168,11 @@ function handleGuess(artist) {
         state.streak = 0;
 
         const failMessages = [
-            "Silly Goose! Wrong flock.",
-            "Not quite! That's wrong.",
-            "Honk... incorrect.",
-            "Oops! Wrong bird.",
-            "Nope! Try again!"
+            "Wrong.",
+            "That's wrong.",
+            "Nope.",
+            "No. You flocked up.",
+            "Incorrect."
         ];
         const randomMsg = failMessages[Math.floor(Math.random() * failMessages.length)];
 

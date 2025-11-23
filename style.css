@@ -300,17 +300,42 @@ main {
 
 /* Mobile Layout */
 @media (max-width: 600px) {
+    #app {
+        padding: 1.5rem;
+    }
+
+    header {
+        margin-bottom: 2.5rem;
+    }
+
     h1 {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
         font-size: 2.5rem;
         line-height: 1.1;
+        margin-bottom: 1.5rem;
     }
 
     .divider {
         font-size: 1.2rem;
         margin: 0;
+    }
+
+    .game-container {
+        gap: 2.5rem;
+    }
+
+    .choices {
+        gap: 1.25rem;
+    }
+
+    .choice-btn {
+        padding: 1.75rem;
+    }
+
+    .choice-btn .artist-name {
+        font-size: 1.4rem;
     }
 }
 
