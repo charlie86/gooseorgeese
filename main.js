@@ -17,6 +17,8 @@ const scoreEl = document.getElementById('score');
 const streakEl = document.getElementById('streak');
 const choiceBtns = document.querySelectorAll('.choice-btn');
 const app = document.getElementById('app');
+// const dogOverlay = document.getElementById('dog-overlay');
+// const dogImg = document.getElementById('dog-img');
 
 // Initialize YouTube API
 const tag = document.createElement('script');
@@ -164,6 +166,16 @@ function handleGuess(artist) {
         btn.classList.add('bounce');
         setTimeout(() => btn.classList.remove('bounce'), 1000);
 
+        // Show Dog Animation
+        // showDog(artist);
+
+        // Delay next song to allow animation to play
+        setTimeout(() => {
+            statusMsg.textContent = "Ready for next song...";
+            statusMsg.style.color = "#aaa";
+            loadRandomSong();
+        }, 2000); // Reduced delay since no animation
+
     } else {
         state.streak = 0;
 
@@ -177,26 +189,49 @@ function handleGuess(artist) {
         const randomMsg = failMessages[Math.floor(Math.random() * failMessages.length)];
 
         statusMsg.textContent = `${randomMsg} It was ${cleanSongTitle} by ${state.currentSong.artist}`;
-        statusMsg.style.color = "#ff6b6b";
+        statusMsg.style.color = "var(--goose-color)";
 
         // Add shake animation to the game container
         const container = document.querySelector('.game-container');
         container.classList.add('shake');
         setTimeout(() => container.classList.remove('shake'), 500);
+
+        // Load next song after a delay (shorter for wrong answer)
+        setTimeout(() => {
+            statusMsg.textContent = "Ready for next song...";
+            statusMsg.style.color = "#aaa";
+            loadRandomSong();
+        }, 2000);
     }
 
     scoreEl.textContent = state.score;
     streakEl.textContent = state.streak;
 
     stopPlaying();
-
-    // Load next song after a delay
-    setTimeout(() => {
-        statusMsg.textContent = "Ready for next song...";
-        statusMsg.style.color = "#aaa";
-        loadRandomSong();
-    }, 2000);
 }
+
+// function showDog(artist) {
+//     // Select image based on artist
+//     if (artist === 'Goose') {
+//         dogImg.src = './assets/dog_one.png';
+//     } else {
+//         dogImg.src = './assets/dog_two.png';
+//     }
+
+//     // Show overlay
+//     dogOverlay.classList.remove('hidden');
+//     // Trigger reflow
+//     void dogOverlay.offsetWidth;
+//     dogOverlay.classList.add('show');
+
+//     // Hide after animation
+//     setTimeout(() => {
+//         dogOverlay.classList.remove('show');
+//         setTimeout(() => {
+//             dogOverlay.classList.add('hidden');
+//         }, 500); // Wait for transition down
+//     }, 2500);
+// }
 
 function updateUI() {
     if (state.isPlaying) {
