@@ -162,10 +162,6 @@ function handleGuess(artist) {
         statusMsg.style.color = "var(--accent-color)";
         triggerConfetti();
 
-        if (state.streak >= 3) {
-            prizeContainer.classList.remove('hidden');
-        }
-
         // Add bounce animation to the correct button
         const btn = artist === 'Goose' ? document.querySelector('.goose') : document.querySelector('.geese');
         btn.classList.add('bounce');
@@ -176,9 +172,15 @@ function handleGuess(artist) {
 
         // Delay next song to allow animation to play
         setTimeout(() => {
-            statusMsg.textContent = "Ready for next song...";
-            statusMsg.style.color = "var(--text-color)";
-            loadRandomSong();
+            if (state.streak >= 3) {
+                // Show prize instead of "Ready for next song"
+                statusMsg.classList.add('hidden');
+                prizeContainer.classList.remove('hidden');
+            } else {
+                statusMsg.textContent = "Ready for next song...";
+                statusMsg.style.color = "var(--text-color)";
+                loadRandomSong();
+            }
         }, 2000); // Reduced delay since no animation
 
     } else {
@@ -299,6 +301,10 @@ playBtn.addEventListener('click', () => {
     if (state.isPlaying) {
         stopPlaying();
     } else {
+        // Dismiss prize if showing
+        if (!prizeContainer.classList.contains('hidden')) {
+            dismissPrize();
+        }
         playSong();
     }
 });
@@ -318,3 +324,20 @@ const checkReady = setInterval(() => {
         clearInterval(checkReady);
     }
 }, 500);
+
+// Prize link click handler
+const prizeLink = document.querySelector('.prize-link');
+prizeLink.addEventListener('click', () => {
+    // Dismiss prize after a short delay to allow navigation
+    setTimeout(() => {
+        dismissPrize();
+    }, 100);
+});
+
+function dismissPrize() {
+    prizeContainer.classList.add('hidden');
+    statusMsg.classList.remove('hidden');
+    statusMsg.textContent = "Ready for next song...";
+    statusMsg.style.color = "var(--text-color)";
+    loadRandomSong();
+}
