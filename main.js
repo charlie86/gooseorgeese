@@ -19,6 +19,7 @@ const choiceBtns = document.querySelectorAll('.choice-btn');
 const app = document.getElementById('app');
 // const dogOverlay = document.getElementById('dog-overlay');
 // const dogImg = document.getElementById('dog-img');
+const prizeContainer = document.getElementById('prize-container');
 
 // Initialize YouTube API
 const tag = document.createElement('script');
@@ -161,6 +162,10 @@ function handleGuess(artist) {
         statusMsg.style.color = "var(--accent-color)";
         triggerConfetti();
 
+        if (state.streak >= 3) {
+            prizeContainer.classList.remove('hidden');
+        }
+
         // Add bounce animation to the correct button
         const btn = artist === 'Goose' ? document.querySelector('.goose') : document.querySelector('.geese');
         btn.classList.add('bounce');
@@ -172,12 +177,13 @@ function handleGuess(artist) {
         // Delay next song to allow animation to play
         setTimeout(() => {
             statusMsg.textContent = "Ready for next song...";
-            statusMsg.style.color = "#aaa";
+            statusMsg.style.color = "var(--text-color)";
             loadRandomSong();
         }, 2000); // Reduced delay since no animation
 
     } else {
         state.streak = 0;
+        prizeContainer.classList.add('hidden');
 
         const failMessages = [
             "Wrong.",
@@ -199,7 +205,7 @@ function handleGuess(artist) {
         // Load next song after a delay (shorter for wrong answer)
         setTimeout(() => {
             statusMsg.textContent = "Ready for next song...";
-            statusMsg.style.color = "#aaa";
+            statusMsg.style.color = "var(--text-color)";
             loadRandomSong();
         }, 2000);
     }
