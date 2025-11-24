@@ -172,7 +172,7 @@ function handleGuess(artist) {
 
         // Delay next song to allow animation to play
         setTimeout(() => {
-            if (state.streak >= 3) {
+            if (state.streak === 3) {
                 // Show prize instead of "Ready for next song"
                 statusMsg.classList.add('hidden');
                 prizeContainer.classList.remove('hidden');
